@@ -15,7 +15,7 @@ class HomeCubit extends Cubit<HomeStates> {
     contacts.clear();
     emit(HomeGetDataLoadingState());
     await DioHelper.getData(
-      url: "http://192.168.1.125/phpproject/contactInformation.php",
+      url: "http://localhost/phpproject/contactInformation.php",
     ).then((value) {
       value.data["contacts"].forEach((e) {
         contacts.add(Contacts.fromJson(e));
@@ -31,7 +31,7 @@ class HomeCubit extends Cubit<HomeStates> {
   Future<void> crudOperationsContact(Contacts contactData) async {
     emit(HomeCrudOperationsLoadingState());
    await DioHelper.postData(
-      url: "http://192.168.1.125/phpproject/contactInformation.php",
+      url: "http://localhost/phpproject/contactInformation.php",
       data: contactData.toJson(),
     ).then((value) {
       msgOperations = value.data["message"];
